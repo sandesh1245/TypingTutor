@@ -7,13 +7,13 @@
   IgnorableNamespaces="uap rescap desktop">
 
   <Identity
-    Name="ExamTyping.TypingTutor"
-    Publisher="CN=ExamTypingSuite"
+    Name="bc690503-c1fe-4a22-84e5-77d394e3960c"
+    Publisher="CN=3DD1BBA5-3865-4441-ADF3-EA240BCCC42C"
     Version="2.5.0.0"
     ProcessorArchitecture="x64" />
 
   <Properties>
-    <DisplayName>ExamTyping Tutor</DisplayName>
+    <DisplayName>Exam Typing Tutor</DisplayName>
     <PublisherDisplayName>ExamTyping Suite</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
     <Description>Professional Typing Tutor and Exam Simulator for SSC, Railway, High Court, and Multi-language Typing Exams.</Description>

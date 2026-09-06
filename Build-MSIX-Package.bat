@@ -34,11 +34,22 @@ if exist "C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.e
     set "SIGNTOOL_PATH=C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe"
 )
 
-:: 3. Ensure self-contained release executable exists
-set "EXE_SOURCE=Publish\SelfContained\TypingTutor.exe"
+:: 3. Select target executable (Slim Lightweight under 25MB by default, or Full Self-Contained)
+if "%~1"=="--full" (
+    set "EXE_SOURCE=Publish\SelfContained\TypingTutor.exe"
+    echo [MODE] Building Full Self-Contained MSIX...
+) else (
+    set "EXE_SOURCE=Publish\FrameworkDependent\TypingTutor.exe"
+    echo [MODE] Building Lightweight Slim MSIX - Under 25 MB...
+)
+
 if not exist "!EXE_SOURCE!" (
-    echo [INFO] Standalone executable not found in Publish\SelfContained. Building now...
-    call "Build-SingleExe-And-Setup.bat"
+    echo [INFO] Executable not found in !EXE_SOURCE!. Compiling now...
+    if "%~1"=="--full" (
+        call "Build-SingleExe-And-Setup.bat"
+    ) else (
+        dotnet publish -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o Publish\FrameworkDependent TypingTutor.csproj
+    )
     if not exist "!EXE_SOURCE!" (
         echo [ERROR] Failed to compile !EXE_SOURCE!
         pause

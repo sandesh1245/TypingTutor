@@ -21,7 +21,7 @@ if (-not (Test-Path $certDir)) {
 
 $pfxPath = Join-Path $certDir "ExamTypingTest.pfx"
 $cerPath = Join-Path $certDir "ExamTypingTest.cer"
-$certSubject = "CN=ExamTypingSuite"
+$certSubject = "CN=3DD1BBA5-3865-4441-ADF3-EA240BCCC42C"
 $pfxPassword = "ExamTyping2026"
 
 Write-Host "==============================================================================" -ForegroundColor Cyan
