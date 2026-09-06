@@ -101,7 +101,7 @@ namespace TypingTutorSetup
             }
         }
 
-        private void ExtractEmbeddedPayload(string targetPath)
+        public static void ExtractEmbeddedPayload(string targetPath)
         {
             var assembly = Assembly.GetExecutingAssembly();
             string? resourceName = assembly.GetManifestResourceNames()
@@ -129,7 +129,7 @@ namespace TypingTutorSetup
             resStream.CopyTo(fileStream);
         }
 
-        private void CreateShortcut(string shortcutPath, string targetPath, string description)
+        public static void CreateShortcut(string shortcutPath, string targetPath, string description)
         {
             try
             {
@@ -150,7 +150,7 @@ namespace TypingTutorSetup
             catch { }
         }
 
-        private void RegisterUninstaller(string installDir, string targetExePath)
+        public static void RegisterUninstaller(string installDir, string targetExePath)
         {
             try
             {
