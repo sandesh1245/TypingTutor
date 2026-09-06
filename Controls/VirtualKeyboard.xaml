@@ -1,0 +1,146 @@
+<UserControl x:Class="TypingTutor.Controls.VirtualKeyboard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="260" d:DesignWidth="820">
+    <UserControl.Resources>
+        <!-- Global TextBlock style for key labels -->
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#0F172A"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Standard Key Style -->
+        <Style x:Key="KeyStyle" TargetType="Border">
+            <Setter Property="Width" Value="42"/>
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="BorderBrush" Value="#CBD5E1"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+        </Style>
+
+        <!-- Special / Modifier Key Style -->
+        <Style x:Key="KeyWideStyle" TargetType="Border" BasedOn="{StaticResource KeyStyle}">
+            <Setter Property="Background" Value="#F1F5F9"/>
+            <Setter Property="BorderBrush" Value="#94A3B8"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Border x:Name="BdrKeyboardOuter" Background="#F1F5F9" CornerRadius="16" BorderBrush="#CBD5E1" BorderThickness="1" Padding="14,10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header info -->
+            <Grid Grid.Row="0" Margin="0,0,0,10">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock x:Name="TxtLayoutTitle" Text="English QWERTY Layout" Foreground="#0F172A" FontSize="13" FontWeight="Bold"/>
+                    <Border Background="#E0F2FE" CornerRadius="6" Padding="8,2" Margin="10,0,0,0">
+                        <TextBlock x:Name="TxtFingerGuide" Text="Home Row: ASDF JKL;" Foreground="#0284C7" FontSize="11" FontWeight="SemiBold"/>
+                    </Border>
+                </StackPanel>
+
+                <!-- Color legend for finger zones -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Border Background="#EC4899" CornerRadius="4" Width="10" Height="10" Margin="0,0,4,0"/>
+                    <TextBlock Text="Pinky" Foreground="#475569" FontSize="10" Margin="0,0,8,0"/>
+                    <Border Background="#A855F7" CornerRadius="4" Width="10" Height="10" Margin="0,0,4,0"/>
+                    <TextBlock Text="Ring" Foreground="#475569" FontSize="10" Margin="0,0,8,0"/>
+                    <Border Background="#3B82F6" CornerRadius="4" Width="10" Height="10" Margin="0,0,4,0"/>
+                    <TextBlock Text="Middle" Foreground="#475569" FontSize="10" Margin="0,0,8,0"/>
+                    <Border Background="#10B981" CornerRadius="4" Width="10" Height="10" Margin="0,0,4,0"/>
+                    <TextBlock Text="Index" Foreground="#475569" FontSize="10" Margin="0,0,8,0"/>
+                    <Border Background="#F59E0B" CornerRadius="4" Width="10" Height="10" Margin="0,0,4,0"/>
+                    <TextBlock Text="Thumb" Foreground="#475569" FontSize="10"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- Keyboard key grid container -->
+            <StackPanel Grid.Row="1" x:Name="PnlKeyboardRows">
+                <!-- Row 1: Number Row -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2">
+                    <Border x:Name="Key_Tilde" Style="{StaticResource KeyStyle}" Tag="Pinky"><TextBlock Text="~ `"/></Border>
+                    <Border x:Name="Key_1" Style="{StaticResource KeyStyle}" Tag="Pinky"><TextBlock Text="1 !"/></Border>
+                    <Border x:Name="Key_2" Style="{StaticResource KeyStyle}" Tag="Ring"><TextBlock Text="2 @"/></Border>
+                    <Border x:Name="Key_3" Style="{StaticResource KeyStyle}" Tag="Middle"><TextBlock Text="3 #"/></Border>
+                    <Border x:Name="Key_4" Style="{StaticResource KeyStyle}" Tag="Index"><TextBlock Text="4 $"/></Border>
+                    <Border x:Name="Key_5" Style="{StaticResource KeyStyle}" Tag="Index"><TextBlock Text="5 %"/></Border>
+                    <Border x:Name="Key_6" Style="{StaticResource KeyStyle}" Tag="Index"><TextBlock Text="6 ^"/></Border>
+                    <Border x:Name="Key_7" Style="{StaticResource KeyStyle}" Tag="Index"><TextBlock Text="7 &amp;"/></Border>
+                    <Border x:Name="Key_8" Style="{StaticResource KeyStyle}" Tag="Middle"><TextBlock Text="8 *"/></Border>
+                    <Border x:Name="Key_9" Style="{StaticResource KeyStyle}" Tag="Ring"><TextBlock Text="9 ("/></Border>
+                    <Border x:Name="Key_0" Style="{StaticResource KeyStyle}" Tag="Pinky"><TextBlock Text="0 )"/></Border>
+                    <Border x:Name="Key_Minus" Style="{StaticResource KeyStyle}" Tag="Pinky"><TextBlock Text="- _"/></Border>
+                    <Border x:Name="Key_Equal" Style="{StaticResource KeyStyle}" Tag="Pinky"><TextBlock Text="= +"/></Border>
+                    <Border x:Name="Key_Backspace" Style="{StaticResource KeyWideStyle}" Width="65" Tag="Pinky"><TextBlock Text="Backspace"/></Border>
+                </StackPanel>
+
+                <!-- Row 2: Top Row -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2">
+                    <Border x:Name="Key_Tab" Style="{StaticResource KeyWideStyle}" Width="52" Tag="Pinky"><TextBlock Text="Tab"/></Border>
+                    <Border x:Name="Key_Q" Style="{StaticResource KeyStyle}" Tag="Pinky"><TextBlock x:Name="Txt_Q" Text="Q"/></Border>
+                    <Border x:Name="Key_W" Style="{StaticResource KeyStyle}" Tag="Ring"><TextBlock x:Name="Txt_W" Text="W"/></Border>
+                    <Border x:Name="Key_E" Style="{StaticResource KeyStyle}" Tag="Middle"><TextBlock x:Name="Txt_E" Text="E"/></Border>
+                    <Border x:Name="Key_R" Style="{StaticResource KeyStyle}" Tag="Index"><TextBlock x:Name="Txt_R" Text="R"/></Border>
+                    <Border x:Name="Key_T" Style="{StaticResource KeyStyle}" Tag="Index"><TextBlock x:Name="Txt_T" Text="T"/></Border>
+                    <Border x:Name="Key_Y" Style="{StaticResource KeyStyle}" Tag="Index"><TextBlock x:Name="Txt_Y" Text="Y"/></Border>
+                    <Border x:Name="Key_U" Style="{StaticResource KeyStyle}" Tag="Index"><TextBlock x:Name="Txt_U" Text="U"/></Border>
+                    <Border x:Name="Key_I" Style="{StaticResource KeyStyle}" Tag="Middle"><TextBlock x:Name="Txt_I" Text="I"/></Border>
+                    <Border x:Name="Key_O" Style="{StaticResource KeyStyle}" Tag="Ring"><TextBlock x:Name="Txt_O" Text="O"/></Border>
+                    <Border x:Name="Key_P" Style="{StaticResource KeyStyle}" Tag="Pinky"><TextBlock x:Name="Txt_P" Text="P"/></Border>
+                    <Border x:Name="Key_LBracket" Style="{StaticResource KeyStyle}" Tag="Pinky"><TextBlock Text="[ {"/></Border>
+                    <Border x:Name="Key_RBracket" Style="{StaticResource KeyStyle}" Tag="Pinky"><TextBlock Text="] }"/></Border>
+                    <Border x:Name="Key_Backslash" Style="{StaticResource KeyStyle}" Tag="Pinky"><TextBlock Text="\ |"/></Border>
+                </StackPanel>
+
+                <!-- Row 3: Home Row -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2">
+                    <Border x:Name="Key_CapsLock" Style="{StaticResource KeyWideStyle}" Width="62" Tag="Pinky"><TextBlock Text="Caps"/></Border>
+                    <Border x:Name="Key_A" Style="{StaticResource KeyStyle}" Tag="Pinky"><TextBlock x:Name="Txt_A" Text="A"/></Border>
+                    <Border x:Name="Key_S" Style="{StaticResource KeyStyle}" Tag="Ring"><TextBlock x:Name="Txt_S" Text="S"/></Border>
+                    <Border x:Name="Key_D" Style="{StaticResource KeyStyle}" Tag="Middle"><TextBlock x:Name="Txt_D" Text="D"/></Border>
+                    <Border x:Name="Key_F" Style="{StaticResource KeyStyle}" Tag="Index"><TextBlock x:Name="Txt_F" Text="F"/></Border>
+                    <Border x:Name="Key_G" Style="{StaticResource KeyStyle}" Tag="Index"><TextBlock x:Name="Txt_G" Text="G"/></Border>
+                    <Border x:Name="Key_H" Style="{StaticResource KeyStyle}" Tag="Index"><TextBlock x:Name="Txt_H" Text="H"/></Border>
+                    <Border x:Name="Key_J" Style="{StaticResource KeyStyle}" Tag="Index"><TextBlock x:Name="Txt_J" Text="J"/></Border>
+                    <Border x:Name="Key_K" Style="{StaticResource KeyStyle}" Tag="Middle"><TextBlock x:Name="Txt_K" Text="K"/></Border>
+                    <Border x:Name="Key_L" Style="{StaticResource KeyStyle}" Tag="Ring"><TextBlock x:Name="Txt_L" Text="L"/></Border>
+                    <Border x:Name="Key_Semicolon" Style="{StaticResource KeyStyle}" Tag="Pinky"><TextBlock x:Name="Txt_Semicolon" Text="; :"/></Border>
+                    <Border x:Name="Key_Quote" Style="{StaticResource KeyStyle}" Tag="Pinky"><TextBlock Text="' &quot;"/></Border>
+                    <Border x:Name="Key_Enter" Style="{StaticResource KeyWideStyle}" Width="75" Tag="Pinky"><TextBlock Text="Enter"/></Border>
+                </StackPanel>
+
+                <!-- Row 4: Bottom Row -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2">
+                    <Border x:Name="Key_LShift" Style="{StaticResource KeyWideStyle}" Width="82" Tag="Pinky"><TextBlock Text="Shift"/></Border>
+                    <Border x:Name="Key_Z" Style="{StaticResource KeyStyle}" Tag="Pinky"><TextBlock x:Name="Txt_Z" Text="Z"/></Border>
+                    <Border x:Name="Key_X" Style="{StaticResource KeyStyle}" Tag="Ring"><TextBlock x:Name="Txt_X" Text="X"/></Border>
+                    <Border x:Name="Key_C" Style="{StaticResource KeyStyle}" Tag="Middle"><TextBlock x:Name="Txt_C" Text="C"/></Border>
+                    <Border x:Name="Key_V" Style="{StaticResource KeyStyle}" Tag="Index"><TextBlock x:Name="Txt_V" Text="V"/></Border>
+                    <Border x:Name="Key_B" Style="{StaticResource KeyStyle}" Tag="Index"><TextBlock x:Name="Txt_B" Text="B"/></Border>
+                    <Border x:Name="Key_N" Style="{StaticResource KeyStyle}" Tag="Index"><TextBlock x:Name="Txt_N" Text="N"/></Border>
+                    <Border x:Name="Key_M" Style="{StaticResource KeyStyle}" Tag="Middle"><TextBlock x:Name="Txt_M" Text="M"/></Border>
+                    <Border x:Name="Key_Comma" Style="{StaticResource KeyStyle}" Tag="Ring"><TextBlock Text=", &lt;"/></Border>
+                    <Border x:Name="Key_Period" Style="{StaticResource KeyStyle}" Tag="Pinky"><TextBlock Text=". &gt;"/></Border>
+                    <Border x:Name="Key_Slash" Style="{StaticResource KeyStyle}" Tag="Pinky"><TextBlock Text="/ ?"/></Border>
+                    <Border x:Name="Key_RShift" Style="{StaticResource KeyWideStyle}" Width="88" Tag="Pinky"><TextBlock Text="Shift"/></Border>
+                </StackPanel>
+
+                <!-- Row 5: Space Bar -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2">
+                    <Border x:Name="Key_Space" Style="{StaticResource KeyWideStyle}" Width="300" Tag="Thumb"><TextBlock Text="Spacebar"/></Border>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

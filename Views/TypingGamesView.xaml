@@ -1,0 +1,152 @@
+<UserControl x:Class="TypingTutor.Views.TypingGamesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1000">
+    <Grid Background="#F8FAFC">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Game Header with Round Icons -->
+        <Border Grid.Row="0" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="0,0,0,1" Padding="20,10">
+            <Grid>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Background="#FEF3C7" Width="38" Height="38" CornerRadius="19" Margin="0,0,12,0" VerticalAlignment="Center">
+                        <TextBlock Text="🚀" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="METEOR TYPER - ARCADE DEFENSE" Foreground="#D97706" FontSize="14" FontWeight="Black"/>
+                        <TextBlock Text="Defend the shield against falling speed words" Foreground="#64748B" FontSize="11" FontWeight="SemiBold"/>
+                    </StackPanel>
+                    
+                    <!-- Language Selector -->
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="24,0,0,0">
+                        <Border Background="#F1F5F9" Width="26" Height="26" CornerRadius="13" Margin="0,0,6,0">
+                            <TextBlock Text="🌐" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <TextBlock Text="Language:" Foreground="#64748B" FontSize="11" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <ComboBox x:Name="CmbGameLanguage" Width="160" Height="30" SelectionChanged="CmbGameLanguage_SelectionChanged" Background="#F8FAFC" Foreground="#0F172A" BorderBrush="#CBD5E1" FontSize="11" VerticalContentAlignment="Center"/>
+                    </StackPanel>
+
+                    <!-- Indic Active Badge -->
+                    <Border x:Name="BdrGameIndicBadge" Background="#FEF3C7" BorderBrush="#F59E0B" BorderThickness="1" CornerRadius="12" Padding="8,3" Margin="12,0,0,0" VerticalAlignment="Center" Visibility="Collapsed">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="🇮🇳 " FontSize="11"/>
+                            <TextBlock x:Name="TxtGameIndicMode" Text="Indic Translit" Foreground="#92400E" FontSize="10" FontWeight="Bold"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Live Game Metrics with Circular Round Badges -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <!-- Score -->
+                    <Border Background="#FFFBEB" CornerRadius="12" BorderBrush="#FDE68A" BorderThickness="1" Padding="10,4" Margin="0,0,10,0">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Border Background="#FEF3C7" Width="30" Height="30" CornerRadius="15" Margin="0,0,8,0">
+                                <TextBlock Text="⭐" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="SCORE" Foreground="#92400E" FontSize="9" FontWeight="Bold"/>
+                                <TextBlock x:Name="TxtScore" Text="0" Foreground="#0F172A" FontSize="16" FontWeight="Black"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- High Score -->
+                    <Border Background="#F0F9FF" CornerRadius="12" BorderBrush="#BAE6FD" BorderThickness="1" Padding="10,4" Margin="0,0,10,0">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Border Background="#E0F2FE" Width="30" Height="30" CornerRadius="15" Margin="0,0,8,0">
+                                <TextBlock Text="🏆" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="HIGH SCORE" Foreground="#0369A1" FontSize="9" FontWeight="Bold"/>
+                                <TextBlock x:Name="TxtHighScore" Text="1,250" Foreground="#0284C7" FontSize="16" FontWeight="Black"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Health -->
+                    <Border Background="#FEF2F2" CornerRadius="12" BorderBrush="#FECACA" BorderThickness="1" Padding="10,4" Margin="0,0,14,0">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Border Background="#FEE2E2" Width="30" Height="30" CornerRadius="15" Margin="0,0,8,0">
+                                <TextBlock Text="❤️" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="LIVES REMAINING" Foreground="#991B1B" FontSize="9" FontWeight="Bold"/>
+                                <TextBlock x:Name="TxtHealth" Text="❤❤❤❤❤" Foreground="#DC2626" FontSize="14" FontWeight="Black"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Start Game Button -->
+                    <Button x:Name="BtnStartGame" Content="Start Game ▶" Click="BtnStartGame_Click" Background="#16A34A" Foreground="#FFFFFF" FontWeight="Bold" Padding="16,7" BorderThickness="0">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="16"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Game Canvas Arena -->
+        <Grid Grid.Row="1" Margin="20">
+            <Border Background="#F1F5F9" CornerRadius="16" BorderBrush="#CBD5E1" BorderThickness="1" ClipToBounds="True">
+                <Grid>
+                    <!-- Falling words container canvas -->
+                    <Canvas x:Name="GameCanvas" Background="Transparent"/>
+
+                    <!-- Defense Shield Ground Line -->
+                    <Border Height="4" VerticalAlignment="Bottom" Background="#DC2626" Margin="0,0,0,45">
+                        <Border.Effect>
+                            <DropShadowEffect Color="#DC2626" BlurRadius="12"/>
+                        </Border.Effect>
+                    </Border>
+
+                    <!-- Player Key Input Prompt Bar -->
+                    <Border Height="45" VerticalAlignment="Bottom" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="0,1,0,0" Padding="14,0">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Border Background="#FEF3C7" Width="24" Height="24" CornerRadius="12" Margin="0,0,8,0">
+                                    <TextBlock Text="⌨" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <TextBlock Text="ACTIVE TARGET BUFFER: " Foreground="#64748B" FontSize="11" FontWeight="Bold" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="TxtCurrentBuffer" Text="" FontFamily="Nirmala UI, Mangal, Segoe UI" Foreground="#D97706" FontSize="18" FontWeight="Black" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <TextBlock Text="Type letters to lock &amp; destroy words (Indic translit &amp; IME supported)" Foreground="#64748B" FontSize="11" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <!-- Overlay Start / Game Over Card -->
+                    <Border x:Name="BdrOverlay" Background="#AA0F172A" Visibility="Visible">
+                        <Border Background="#FFFFFF" CornerRadius="18" BorderBrush="#CBD5E1" BorderThickness="1" Padding="32" Width="440" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#000000" BlurRadius="20" ShadowDepth="4" Opacity="0.2"/>
+                            </Border.Effect>
+                            <StackPanel HorizontalAlignment="Center">
+                                <Border Background="#FEF3C7" Width="56" Height="56" CornerRadius="28" Margin="0,0,0,14" HorizontalAlignment="Center">
+                                    <TextBlock Text="🚀" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <TextBlock x:Name="TxtOverlayTitle" Text="ARCADE TYPING MATCH" Foreground="#0F172A" FontSize="22" FontWeight="Black" HorizontalAlignment="Center"/>
+                                <TextBlock x:Name="TxtOverlaySubtitle" Text="Test your finger reflexes and accuracy against falling word meteors across all Indian languages." Foreground="#475569" FontSize="12" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" Margin="0,8,0,22"/>
+                                <Button Content="PLAY NOW ▶" Click="BtnStartGame_Click" Background="#F59E0B" Foreground="#000000" FontSize="15" FontWeight="Black" Padding="34,11" HorizontalAlignment="Center" BorderThickness="0">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="20"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                            </StackPanel>
+                        </Border>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

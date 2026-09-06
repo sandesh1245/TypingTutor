@@ -1,0 +1,12 @@
+## Visual Studio / .NET Build Artifacts
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Publish and binary folders
+Publish/
+*.pdb
+*.log
