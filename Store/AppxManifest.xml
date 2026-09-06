@@ -9,7 +9,7 @@
   <Identity
     Name="bc690503-c1fe-4a22-84e5-77d394e3960c"
     Publisher="CN=3DD1BBA5-3865-4441-ADF3-EA240BCCC42C"
-    Version="2.5.0.0"
+    Version="2.6.0.0"
     ProcessorArchitecture="x64" />
 
   <Properties>

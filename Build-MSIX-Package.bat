@@ -72,13 +72,17 @@ mkdir "!LAYOUT_DIR!"
 mkdir "!LAYOUT_DIR!\Assets"
 
 echo [INFO] Staging package files into !LAYOUT_DIR!...
-copy /y "!EXE_SOURCE!" "!LAYOUT_DIR!\TypingTutor.exe" >nul
+if "%~1"=="--full" (
+    copy /y "!EXE_SOURCE!" "!LAYOUT_DIR!\TypingTutor.exe" >nul
+) else (
+    xcopy /s /y /q "Publish\FrameworkDependent\*" "!LAYOUT_DIR!\" >nul
+)
 copy /y "Store\AppxManifest.xml" "!LAYOUT_DIR!\AppxManifest.xml" >nul
 xcopy /s /y /q "Store\Assets\*" "!LAYOUT_DIR!\Assets\" >nul
 
 :: 6. Create Output Directory
 if not exist "Publish\MSIX" mkdir "Publish\MSIX"
-set "MSIX_OUTPUT=Publish\MSIX\ExamTypingTutor_v2.5.0.msix"
+set "MSIX_OUTPUT=Publish\MSIX\ExamTypingTutor.msix"
 
 :: 7. Compile the MSIX package
 echo.
